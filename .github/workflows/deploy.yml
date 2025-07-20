@@ -1,5 +1,16 @@
 name: Deploy Hugo site
 
+# 给 contents 读、pages 写的权限
+permissions:
+  contents: read
+  pages: write
+
+on:
+  push:
+    branches:
+      - main
+
+
 # 只要你往主分支（main）推源码，就会触发
 on:
   push:
@@ -30,5 +41,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           publish_dir: ./public
-          publish_branch: main       # 你的 Pages 分支，一般是 main；若是 gh-pages 改成 gh-pages
+          publish_branch: gh-pages       # 你的 Pages 分支，一般是 main；若是 gh-pages 改成 gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
