@@ -3,38 +3,36 @@ name: Build and deploy Hugo site
 on:
   push:
     branches:
-      - main    # 只有主分支推送才触发
+      - main
 
 permissions:
-  contents: read    # 读源码
-  pages: write      # 写 Pages
-  id-token: write   # 用于 OIDC，如果以后需要
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Hugo extended
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@v4
         with:
-          hugo-version: '0.148.1'  # 选择最新 Extended 版本
+          hugo-version: '0.148.1'
 
       - name: Build site
-        run: hugo --minify      # 渲染到 public/
+        run: hugo --minify
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3   # ← 升级到 v3
         with:
           path: ./public
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4             # ← 升级到 v4
