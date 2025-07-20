@@ -249,3 +249,10 @@ markup:
         lineNos: true
         lineNumbersInTable: true
         tabWidth: 4
+# SSH 方式（前提你配置好了 SSH Key）
+deployment:
+  targets:
+    - name: github
+      URL: "ssh://git@github.com/lnk-k/lnk-k.github.io.git"
+      branch: main
+      force: true
