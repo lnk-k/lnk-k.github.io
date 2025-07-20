@@ -13,26 +13,29 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Hugo extended
-        uses: peaceiris/actions-hugo@v4
+        uses: peaceiris/actions-hugo@v3   # ← 这里改成 v3
         with:
-          hugo-version: '0.148.1'
+          hugo-version: '0.148.1'        # 你要的 Hugo 版本
+          extended: true                 # 确保是 Extended 版本
 
       - name: Build site
         run: hugo --minify
 
       - name: Upload artifact for deployment
-        uses: actions/upload-pages-artifact@v3   # ← 升级到 v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4             # ← 升级到 v4
+        uses: actions/deploy-pages@v4
