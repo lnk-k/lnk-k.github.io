@@ -1,14 +1,9 @@
 {{ define "main" }}
-  <section class="hero">
-    <div>
-      <p class="eyebrow">Hugo / GitHub Pages / Notes</p>
-      <h1>记录技术、项目和长期思考。</h1>
-      <p class="hero-text">{{ site.Params.description }}</p>
-      <div class="actions">
-        <a class="button primary" href="{{ "/posts/" | relURL }}">阅读文章</a>
-        <a class="button secondary" href="{{ "/about/" | relURL }}">关于我</a>
-      </div>
-    </div>
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  <section class="page-heading compact-heading">
+    <p class="eyebrow">Home</p>
+    <h1>{{ site.Params.subtitle | default site.Title }}</h1>
+    <p>{{ site.Params.description }}</p>
   </section>
 
   <section class="section">
@@ -20,13 +15,32 @@
       <a class="text-link" href="{{ "/posts/" | relURL }}">全部文章</a>
     </div>
 
-    <div class="post-grid">
-      {{ range first 6 (where site.RegularPages "Section" "posts") }}
-        <article class="post-card">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-          <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
-          <p>{{ .Summary | plainify }}</p>
-          <a class="read-more" href="{{ .RelPermalink }}">继续阅读</a>
+    <div class="post-list">
+      {{ range first 8 $posts.ByDate.Reverse }}
+        <article class="post-row">
+          <div class="post-date">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          </div>
+          <div class="post-content">
+            <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+            <div class="post-meta">
+              {{ with .Params.categories }}
+                <span>分类于</span>
+                {{ range . }}
+                  <a href="{{ (printf "/categories/%s/" (. | urlize)) | relURL }}">{{ . }}</a>
+                {{ end }}
+              {{ end }}
+            </div>
+            <p>{{ .Summary | plainify }}</p>
+            {{ with .Params.tags }}
+              <div class="tags">
+                {{ range . }}
+                  <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            <a class="read-more" href="{{ .RelPermalink }}">阅读全文 »</a>
+          </div>
         </article>
       {{ else }}
         <p>还没有文章。</p>

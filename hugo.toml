@@ -10,6 +10,8 @@ timeZone = 'Asia/Shanghai'
   author = 'lnk-k'
   description = '记录技术、学习、项目和一些长期值得保存的想法。'
   github = 'https://github.com/lnk-k'
+  avatar = 'https://github.com/lnk-k.png'
+  subtitle = '碎碎念、学习笔记和一点点探索。'
 
 [menus]
   [[menus.main]]
@@ -24,6 +26,18 @@ timeZone = 'Asia/Shanghai'
     name = '关于'
     pageRef = '/about'
     weight = 30
+  [[menus.main]]
+    name = '标签'
+    url = '/tags/'
+    weight = 40
+  [[menus.main]]
+    name = '分类'
+    url = '/categories/'
+    weight = 50
+  [[menus.main]]
+    name = '归档'
+    pageRef = '/archives'
+    weight = 60
 
 [taxonomies]
   tag = 'tags'

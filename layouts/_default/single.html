@@ -3,13 +3,20 @@
     <header class="article-header">
       {{ with .Section }}<p class="eyebrow">{{ . }}</p>{{ end }}
       <h1>{{ .Title }}</h1>
-      {{ if or .Params.date .Params.tags }}
+      {{ if or .Params.date .Params.categories .Params.tags }}
         <div class="article-meta">
           {{ with .Params.date }}
             <time datetime="{{ $.Date.Format "2006-01-02" }}">{{ $.Date.Format "2006-01-02" }}</time>
           {{ end }}
-          {{ with .Params.tags }}
+          {{ with .Params.categories }}
             {{ if $.Params.date }}<span>·</span>{{ end }}
+            <span>分类于</span>
+            {{ range . }}
+              <a href="{{ (printf "/categories/%s/" (. | urlize)) | relURL }}">{{ . }}</a>
+            {{ end }}
+          {{ end }}
+          {{ with .Params.tags }}
+            {{ if or $.Params.date $.Params.categories }}<span>·</span>{{ end }}
             {{ range . }}
               <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>
             {{ end }}

@@ -12,25 +12,61 @@
     <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
-      <nav class="nav" aria-label="主导航">
-        {{ range site.Menus.main }}
-          <a href="{{ .URL }}">{{ .Name }}</a>
-        {{ end }}
-        {{ with site.Params.github }}
-          <a href="{{ . }}">GitHub</a>
-        {{ end }}
-      </nav>
-    </header>
+    {{ $posts := where site.RegularPages "Section" "posts" }}
+    {{ $tags := site.Taxonomies.tags }}
+    {{ $categories := site.Taxonomies.categories }}
+    <div class="site-shell">
+      <aside class="sidebar" aria-label="站点信息">
+        <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+        <p class="site-subtitle">{{ site.Params.subtitle | default site.Params.description }}</p>
 
-    <main>
-      {{ block "main" . }}{{ end }}
-    </main>
+        <a class="profile" href="{{ "/about/" | relURL }}">
+          {{ with site.Params.avatar }}
+            <img src="{{ . }}" alt="{{ site.Params.author }}" width="96" height="96" />
+          {{ end }}
+          <strong>{{ site.Params.author }}</strong>
+          <span>{{ site.Params.description }}</span>
+        </a>
 
-    <footer class="site-footer">
-      <span>{{ site.Copyright }}</span>
-      <a href="{{ "index.xml" | relURL }}">RSS</a>
-    </footer>
+        <div class="site-stats" aria-label="站点统计">
+          <a href="{{ "/posts/" | relURL }}">
+            <strong>{{ len $posts }}</strong>
+            <span>日志</span>
+          </a>
+          <a href="{{ "/categories/" | relURL }}">
+            <strong>{{ len $categories }}</strong>
+            <span>分类</span>
+          </a>
+          <a href="{{ "/tags/" | relURL }}">
+            <strong>{{ len $tags }}</strong>
+            <span>标签</span>
+          </a>
+        </div>
+
+        <nav class="nav" aria-label="主导航">
+          {{ range site.Menus.main }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
+          {{ end }}
+        </nav>
+
+        <div class="social-links">
+          {{ with site.Params.github }}
+            <a href="{{ . }}">GitHub</a>
+          {{ end }}
+          <a href="{{ "index.xml" | relURL }}">RSS</a>
+        </div>
+      </aside>
+
+      <div class="content-shell">
+        <main>
+          {{ block "main" . }}{{ end }}
+        </main>
+
+        <footer class="site-footer">
+          <span>{{ site.Copyright }}</span>
+          <span>Powered by Hugo</span>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>

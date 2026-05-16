@@ -1,0 +1,28 @@
+{{ define "main" }}
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  <section class="page-heading">
+    <p class="eyebrow">Timeline</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </section>
+
+  <section class="section compact">
+    <div class="archive-list">
+      {{ range $posts.GroupByDate "2006" }}
+        <section class="archive-year">
+          <h2>{{ .Key }}</h2>
+          <div>
+            {{ range .Pages.ByDate.Reverse }}
+              <a class="archive-item" href="{{ .RelPermalink }}">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time>
+                <span>{{ .LinkTitle }}</span>
+              </a>
+            {{ end }}
+          </div>
+        </section>
+      {{ else }}
+        <p>这里还没有文章。</p>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

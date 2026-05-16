@@ -1,6 +1,6 @@
 {{ define "main" }}
   <section class="page-heading">
-    <p class="eyebrow">{{ .Section | default "Archive" }}</p>
+    <p class="eyebrow">{{ if eq .Kind "term" }}{{ .Data.Singular }}{{ else }}Archive{{ end }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p>{{ . }}</p>{{ end }}
   </section>
@@ -9,9 +9,21 @@
     <div class="post-list">
       {{ range .Pages.ByDate.Reverse }}
         <article class="post-row">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-          <div>
+          <div class="post-date">
+            {{ with .Params.date }}
+              <time datetime="{{ $.Date.Format "2006-01-02" }}">{{ $.Date.Format "2006-01-02" }}</time>
+            {{ end }}
+          </div>
+          <div class="post-content">
             <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+            <div class="post-meta">
+              {{ with .Params.categories }}
+                <span>分类于</span>
+                {{ range . }}
+                  <a href="{{ (printf "/categories/%s/" (. | urlize)) | relURL }}">{{ . }}</a>
+                {{ end }}
+              {{ end }}
+            </div>
             <p>{{ .Summary | plainify }}</p>
             {{ with .Params.tags }}
               <div class="tags">
@@ -20,6 +32,7 @@
                 {{ end }}
               </div>
             {{ end }}
+            <a class="read-more" href="{{ .RelPermalink }}">阅读全文 »</a>
           </div>
         </article>
       {{ else }}
