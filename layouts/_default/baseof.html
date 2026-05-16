@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+    {{ with resources.Get "css/main.css" }}
+      {{ $css := . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+    {{ end }}
+    <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+      <nav class="nav" aria-label="主导航">
+        {{ range site.Menus.main }}
+          <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+        {{ with site.Params.github }}
+          <a href="{{ . }}">GitHub</a>
+        {{ end }}
+      </nav>
+    </header>
+
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="site-footer">
+      <span>{{ site.Copyright }}</span>
+      <a href="{{ "index.xml" | relURL }}">RSS</a>
+    </footer>
+  </body>
+</html>

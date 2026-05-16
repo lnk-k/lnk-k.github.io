@@ -1,0 +1,30 @@
+{{ define "main" }}
+  <section class="page-heading">
+    <p class="eyebrow">{{ .Section | default "Archive" }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </section>
+
+  <section class="section compact">
+    <div class="post-list">
+      {{ range .Pages.ByDate.Reverse }}
+        <article class="post-row">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          <div>
+            <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+            <p>{{ .Summary | plainify }}</p>
+            {{ with .Params.tags }}
+              <div class="tags">
+                {{ range . }}
+                  <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </article>
+      {{ else }}
+        <p>这里还没有内容。</p>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

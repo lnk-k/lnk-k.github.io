@@ -1,0 +1,42 @@
+baseURL = 'https://lnk-k.github.io/'
+languageCode = 'zh-cn'
+title = 'lnk-k 的博客'
+copyright = '© lnk-k'
+enableRobotsTXT = true
+summaryLength = 90
+timeZone = 'Asia/Shanghai'
+
+[params]
+  author = 'lnk-k'
+  description = '记录技术、学习、项目和一些长期值得保存的想法。'
+  github = 'https://github.com/lnk-k'
+
+[menus]
+  [[menus.main]]
+    name = '首页'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = '文章'
+    pageRef = '/posts'
+    weight = 20
+  [[menus.main]]
+    name = '关于'
+    pageRef = '/about'
+    weight = 30
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    style = 'github'
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
