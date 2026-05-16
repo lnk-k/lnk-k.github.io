@@ -8,10 +8,10 @@ timeZone = 'Asia/Shanghai'
 
 [params]
   author = 'lnk-k'
-  description = '记录技术、学习、项目和一些长期值得保存的想法。'
+  description = '记录记录一些记录'
   github = 'https://github.com/lnk-k'
   avatar = 'https://github.com/lnk-k.png'
-  subtitle = '碎碎念、学习笔记和一点点探索。'
+  subtitle = '想想一些想'
 
 [menus]
   [[menus.main]]
