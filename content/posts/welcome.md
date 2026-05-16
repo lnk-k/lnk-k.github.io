@@ -4,7 +4,7 @@ date = 2026-05-16T00:00:00+08:00
 draft = false
 description = '这个博客已经用 Hugo 和 GitHub Pages 搭建完成。'
 tags = ['Hugo', 'GitHub Pages']
-categories = ['博客搭建']
+categories = ['杂项']
 +++
 
 这是博客的第一篇文章。
