@@ -133,21 +133,25 @@ h3 {
 
 .site-stats a {
   display: grid;
+  min-height: 64px;
+  align-content: center;
   justify-items: center;
-  gap: 0.15rem;
+  gap: 0.3rem;
   background: var(--sidebar-soft);
-  padding: 0.85rem 0.35rem;
+  padding: 0.75rem 0.35rem;
 }
 
 .site-stats strong {
   color: #fff;
   font-size: 1.05rem;
-  line-height: 1;
+  line-height: 1.15;
 }
 
 .site-stats span {
   color: rgba(243, 244, 239, 0.62);
   font-size: 0.78rem;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .nav {
