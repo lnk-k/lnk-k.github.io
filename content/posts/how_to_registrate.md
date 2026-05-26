@@ -15,6 +15,8 @@ categories = ['医学图像识别']
 
 一开始其实根本没理解配准是具体需要做什么，只是一味的vibe coding，什么重采样，刚性配准什么的，最后生成出来的图像全是噪声，第二周感觉把这些放一起就没问题了，结果惊奇的发现人体直接错位了，锁骨来到了人体的中间地方，经过重新认真严谨思考，才意识到配准的真正含义，接下来是对具体配准过程的学习笔记。
 
+完整代码见 GitHub：[registration-scripts](https://github.com/lnk-k/medical-image-registration-scripts)
+
 ---
 
 # 1. 任务目标
