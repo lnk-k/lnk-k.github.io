@@ -13,11 +13,11 @@ categories = ['医学图像处理']
 
 # 0. 背景
 
-其实本来没想做这个的，只是发现每次去找series_number的时候，我都要一个一个用ITK打开dicom文件，笔者属实是懒于应付这种重复机械的工作，所以写了个批量重命名的脚本~~~虽然是生成的并且实际上花费的时间早就够我一个一个点进去看了~~。
+其实本来没想做这个的，只是发现每次去找series_number的时候，我都要一个一个用ITK打开dicom文件，笔者属实是懒于应付这种重复机械的工作，所以写了个批量重命名的脚本~~虽然是生成的并且实际上花费的时间早就够我一个一个点进去看了~~。
 
 每一个乱码文件夹里面可能是一组DICOM序列，比如 CT 的某个扫描序列、localizer 定位像、增强期图像等。问题就是这些文件夹名称没有任何意义，所以写了个python脚本用来批量读取每个DICOM序列的header信息，并且根据series_number和series_description自动重命名文件夹。
 
-完整代码见 Github:[allocate-dicom-renamer]https://github.com/lnk-k/allocate-dicom-renamer
+完整代码见 Github:[allocate-dicom-renamer](https://github.com/lnk-k/allocate-dicom-renamer)
 
 ---
 
