@@ -12,9 +12,6 @@
     <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}" />
   </head>
   <body>
-    {{ $posts := where site.RegularPages "Section" "posts" }}
-    {{ $tags := site.Taxonomies.tags }}
-    {{ $categories := site.Taxonomies.categories }}
     <div class="site-shell">
       <aside class="sidebar" aria-label="站点信息">
         <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
@@ -27,21 +24,6 @@
           <strong>{{ site.Params.author }}</strong>
           <span>{{ site.Params.description }}</span>
         </a>
-
-        <div class="site-stats" aria-label="站点统计">
-          <a href="{{ "/posts/" | relURL }}">
-            <strong>{{ len $posts }}</strong>
-            <span>日志</span>
-          </a>
-          <a href="{{ "/categories/" | relURL }}">
-            <strong>{{ len $categories }}</strong>
-            <span>分类</span>
-          </a>
-          <a href="{{ "/tags/" | relURL }}">
-            <strong>{{ len $tags }}</strong>
-            <span>标签</span>
-          </a>
-        </div>
 
         <nav class="nav" aria-label="主导航">
           {{ range site.Menus.main }}

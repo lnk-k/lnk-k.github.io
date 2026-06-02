@@ -121,39 +121,6 @@ h3 {
   line-height: 1.56;
 }
 
-.site-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.site-stats a {
-  display: grid;
-  min-height: 64px;
-  align-content: center;
-  justify-items: center;
-  gap: 0.3rem;
-  background: var(--sidebar-soft);
-  padding: 0.75rem 0.35rem;
-}
-
-.site-stats strong {
-  color: #fff;
-  font-size: 1.05rem;
-  line-height: 1.15;
-}
-
-.site-stats span {
-  color: rgba(243, 244, 239, 0.62);
-  font-size: 0.78rem;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
 .nav {
   display: grid;
   gap: 0.28rem;
