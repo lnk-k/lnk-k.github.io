@@ -4,7 +4,7 @@ date = '2026-05-28T20:11:04+08:00'
 draft = false
 description = ''
 tags = ['pydicom','数据预处理','脚本']
-categories = ['医学图像处理']
+categories = ['医学图像识别']
 +++
 
 # 如何处理乱码DICOM文件夹
