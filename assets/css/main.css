@@ -403,6 +403,46 @@ main {
   padding: 0.12rem 0.3rem;
 }
 
+.article-math table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.94em;
+}
+
+.article-math th,
+.article-math td {
+  min-width: 6em;
+  border: 1px solid var(--line-strong);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-math th {
+  background: var(--surface-muted);
+}
+
+.article-math .math-display {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  padding: 0.8rem 0.5rem;
+}
+
+.article-math .math-display math {
+  width: max-content;
+  min-width: 100%;
+}
+
+.article-math h2,
+.article-math h3,
+.article-math h4 {
+  scroll-margin-top: 1.5rem;
+}
+
 .term-cloud {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

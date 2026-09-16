@@ -25,7 +25,7 @@
       {{ end }}
     </header>
 
-    <div class="article-body">
+    <div class="article-body{{ if .Params.math }} article-math{{ end }}">
       {{ .Content }}
     </div>
   </article>
